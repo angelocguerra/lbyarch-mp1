@@ -1,0 +1,35 @@
+INPUT:
+Positive Integer
+
+PROCESS:
+
+    Outer Loop:
+    Continuous prompting on inputs
+    Terminates when user inputs "N"
+
+    Inner Loop:
+    Get input's numDigits -> Iterator
+    - One way is to divide the number by 10 then per iterate, increment a counter ; loop ends when number == 0
+
+    mth-power of each digits (iterates based on numDigits)
+    - Use ROL command to flip the digit and get the m-th power of the MSD first
+    - Use IMUL command in a loop to exponentiate the number
+
+    Sum of the m-th power digits
+    - Get the sum of each of the m-th power of each digits
+
+    Check if Armstrong Number or not
+    - Get the sum of each of the m-th power of each digits and
+      compare them with the input number
+
+OUTPUT:
+
+    m-th power of each digits: <###>
+    Sum of the m-th power of each digits: <#, ###, ##>
+    Armstrong Number: <Yes/No>
+
+ADDITIONAL CONDITIONS:
+    Error Validations:
+        - Invalid Input (input with character)
+        - Negative Number Input
+
