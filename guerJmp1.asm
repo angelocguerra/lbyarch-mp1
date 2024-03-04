@@ -14,11 +14,24 @@ main:
     ; mov ebp, esp; for correct debugging
     
     PROGRAM_LOOP:
+        ; Input
         PRINT_STRING "Input Number: "
         GET_DEC 8, [inputNum]
         PRINT_DEC 8, [inputNum]
         NEWLINE
+        
+        ; Input Validation
         CALL INPUT_VALIDATION
+        
+        ; m-th power of each digits
+        
+        
+        ; Sum of the m-th power digits
+        
+        
+        ; Check if Armstrong Number
+        
+        
         
         PRINT_STRING "Do you want to continue (Y/N)? "
         GET_CHAR [continuePrompt]
