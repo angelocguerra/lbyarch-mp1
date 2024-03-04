@@ -42,10 +42,25 @@ main:
         
         PRINT_STRING "Sum of the m-th power digits: "
         PRINT_DEC 8, [sumMthPowerDigit]
+        NEWLINE
         
         ; C.) Check if Armstrong Number
         
+        PRINT_STRING "Armstrong Number: "
+        MOV RAX, [inputNum]
+        MOV RBX, [sumMthPowerDigit]
+        CMP RAX, RBX ; If sum == input
+        JE DISPLAY_YES ; Display Yes
+        JMP DISPLAY_NO ; Else, display No
         
+        DISPLAY_YES:
+            PRINT_STRING "Yes"
+            NEWLINE
+            ret
+            
+        DISPLAY_NO:
+            PRINT_STRING "No"
+            ret
         
         PRINT_STRING "Do you want to continue (Y/N)? "
         GET_CHAR [continuePrompt]
