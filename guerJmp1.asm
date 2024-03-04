@@ -60,6 +60,7 @@ main:
             
         DISPLAY_NO:
             PRINT_STRING "No"
+            NEWLINE
             JMP CONTINUE_PROMPT
         
         CONTINUE_PROMPT:
@@ -99,10 +100,11 @@ main:
             ret
             
     ROTATE_INPUT:
+        MOV qword [rotatedNum], 0 ; reset variable
         MOV RAX, [inputNum] ; dividend
-        MOV RBX, [digitCount]
+        MOV BL, [digitCount]
         START_ROTATE_INPUT:
-            CMP RBX, 0 ; Check if digitCount is 0
+            CMP BL, 0 ; Check if digitCount is 0
             JE END_ROTATE_INPUT
             
             MOV RCX, 10 ; divisor
@@ -111,14 +113,14 @@ main:
             
             ; Get power of 10
             MOV R8, 1
-            MOV R9, RBX ; from digitCount
-            DEC R9
+            MOV R9B, BL ; from digitCount
+            DEC R9B
             GET_POWER_10:
-                CMP R9, 0
+                CMP R9B, 0
                 JE END_GET_POWER_10
                 
                 IMUL R8, 10
-                DEC R9
+                DEC R9B
                 
                 JMP GET_POWER_10
                     
@@ -134,6 +136,7 @@ main:
             ret
             
     MTH_POWER_DIGIT:
+        MOV qword [sumMthPowerDigit], 0 ; reset variable
         MOV RAX, [rotatedNum] ; dividend
         MOV BL, [digitCount] ; iterator for each digit
         
