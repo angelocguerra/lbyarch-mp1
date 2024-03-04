@@ -78,9 +78,16 @@ main:
         ret ; End program
         
     INPUT_VALIDATION:
-        PRINT_STRING "Input validated!"
-        NEWLINE
+        ; If input is valid, return and continue program loop
         ret
+        
+        ; Else, proceed to continue prompt
+        ; JMP CONTINUE_PROMPT
+        
+        ; Validation 1: Non-alpabet
+        
+        ; Validation 2: Non-negative
+        
         
     COUNT_DIGIT:
         MOV RAX, [inputNum] ; dividend
