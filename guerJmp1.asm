@@ -64,15 +64,21 @@ main:
             JMP CONTINUE_PROMPT
         
         CONTINUE_PROMPT:
-            PRINT_STRING "Do you want to continue (Y/N)? "
-            GET_CHAR [continuePrompt]
-            PRINT_CHAR [continuePrompt]
+            NEWLINE
+            PRINT_STRING "Do you want to continue (1 = Yes/0 = No)? "
+            GET_DEC 1, [continuePrompt]
+            PRINT_DEC 1, [continuePrompt]
             NEWLINE
         
-            CMP byte [continuePrompt], 'Y'
+            CMP byte [continuePrompt], 1
             JE PROGRAM_LOOP
+           
+            CMP byte [continuePrompt], 0
+            JE END_PROGRAM_LOOP
             
-            JMP END_PROGRAM_LOOP
+            PRINT_STRING "Invalid Input. Try again"
+            NEWLINE
+            JMP CONTINUE_PROMPT
     
     END_PROGRAM_LOOP:
         ret ; End program
