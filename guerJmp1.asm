@@ -56,23 +56,24 @@ main:
         DISPLAY_YES:
             PRINT_STRING "Yes"
             NEWLINE
-            ret
+            JMP CONTINUE_PROMPT
             
         DISPLAY_NO:
             PRINT_STRING "No"
-            ret
+            JMP CONTINUE_PROMPT
         
-        PRINT_STRING "Do you want to continue (Y/N)? "
-        GET_CHAR [continuePrompt]
-        PRINT_CHAR [continuePrompt]
-        NEWLINE
+        CONTINUE_PROMPT:
+            PRINT_STRING "Do you want to continue (Y/N)? "
+            GET_CHAR [continuePrompt]
+            PRINT_CHAR [continuePrompt]
+            NEWLINE
         
-        CMP byte [continuePrompt], 'Y'
-        JE PROGRAM_LOOP
-        
-        JMP FINIS
+            CMP byte [continuePrompt], 'Y'
+            JE PROGRAM_LOOP
+            
+            JMP END_PROGRAM_LOOP
     
-    FINIS:
+    END_PROGRAM_LOOP:
         ret ; End program
         
     INPUT_VALIDATION:
