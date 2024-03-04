@@ -38,11 +38,12 @@ main:
             CALL MTH_POWER_DIGIT
             NEWLINE
             
+        ; B.) Sum of the m-th power digits
         
-        ; Sum of the m-th power digits
+        PRINT_STRING "Sum of the m-th power digits: "
+        PRINT_DEC 8, [sumMthPowerDigit]
         
-        
-        ; Check if Armstrong Number
+        ; C.) Check if Armstrong Number
         
         
         
@@ -143,6 +144,7 @@ main:
             
                 END_EXPONENTIATE:
                     PRINT_DEC 8, RDX
+                    ADD [sumMthPowerDigit], RDX
                     DEC RBX
                     CMP RBX, 0
                     JNE COMMA_FORMAT
