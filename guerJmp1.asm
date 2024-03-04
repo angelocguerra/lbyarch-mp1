@@ -6,12 +6,12 @@
 section .data
 inputNum dq 0
 continuePrompt db 0
+digitCount db 0
 
 section .text
 global main
 main:
     mov rbp, rsp; for correct debugging
-    ; mov ebp, esp; for correct debugging
     
     PROGRAM_LOOP:
         ; Input
@@ -25,6 +25,8 @@ main:
         
         ; m-th power of each digits
         
+        ; 1. Count the number of digits
+        CALL COUNT_DIGIT
         
         ; Sum of the m-th power digits
         
@@ -50,9 +52,23 @@ main:
         PRINT_STRING "Input validated!"
         NEWLINE
         ret
-    
-    
-    
-    
+        
+    COUNT_DIGIT:
+        MOV RAX, [inputNum] ; dividend
+        MOV byte [digitCount], 0 ; reset counter
+        START_COUNT_DIGIT:
+            CMP RAX, 0 ; Check if temp input is 0
+            JE END_COUNT_DIGIT
+            
+            MOV RCX, 10 ; divisor
+            MOV RDX, 0
+            DIV RCX
+            INC byte [digitCount]
+            
+            JMP START_COUNT_DIGIT
+        
+        END_COUNT_DIGIT:
+            ret
+       
     xor rax, rax
     ret
