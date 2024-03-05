@@ -72,10 +72,10 @@ main:
             PRINT_CHAR [continuePrompt]
             NEWLINE
         
-            CMP byte [continuePrompt], 1
+            CMP byte [continuePrompt], 'Y'
             JE PROGRAM_LOOP
            
-            CMP byte [continuePrompt], 0
+            CMP byte [continuePrompt], 'N'
             JE END_PROGRAM_LOOP
             
             PRINT_STRING "Invalid Input. Try again"
