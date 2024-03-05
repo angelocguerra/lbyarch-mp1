@@ -66,8 +66,10 @@ main:
         CONTINUE_PROMPT:
             NEWLINE
             PRINT_STRING "Do you want to continue (1 = Yes/0 = No)? "
-            GET_DEC 1, [continuePrompt]
-            PRINT_DEC 1, [continuePrompt]
+            GET_CHAR [continuePrompt] ; Catch '\n' character
+            GET_CHAR [continuePrompt] ; Catch [Enter] character
+            GET_CHAR [continuePrompt]
+            PRINT_CHAR [continuePrompt]
             NEWLINE
         
             CMP byte [continuePrompt], 1
