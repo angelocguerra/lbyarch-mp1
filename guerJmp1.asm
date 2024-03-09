@@ -97,8 +97,12 @@ main:
         
         
     COUNT_DIGIT:
-        MOV RAX, [inputNum] ; dividend
         MOV byte [digitCount], 0 ; reset counter
+        MOV RAX, 0 ; reset reg
+        MOV RBX, 0 ; reset reg
+        
+        MOV RAX, [inputNum] ; dividend
+        
         START_COUNT_DIGIT:
             CMP RAX, 0 ; Check if temp input is 0
             JE END_COUNT_DIGIT
@@ -115,6 +119,9 @@ main:
             
     ROTATE_INPUT:
         MOV qword [rotatedNum], 0 ; reset variable
+        MOV RAX, 0 ; reset reg
+        MOV RBX, 0 ; reset reg
+        
         MOV RAX, [inputNum] ; dividend
         MOV BL, [digitCount]
         START_ROTATE_INPUT:
@@ -151,6 +158,9 @@ main:
             
     MTH_POWER_DIGIT:
         MOV qword [sumMthPowerDigit], 0 ; reset variable
+        MOV RAX, 0 ; reset reg
+        MOV RBX, 0 ; reset reg
+        
         MOV RAX, [rotatedNum] ; dividend
         MOV BL, [digitCount] ; iterator for each digit
         
