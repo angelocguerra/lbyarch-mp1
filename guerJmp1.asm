@@ -19,7 +19,7 @@ main:
         ; Input
         PRINT_STRING "Input Number: "
         GET_DEC 8, [inputNum]
-        PRINT_DEC 8, [inputNum]
+        ; PRINT_DEC 8, [inputNum] ; Display in SASM
         NEWLINE
         
         ; Input Validation
@@ -69,7 +69,7 @@ main:
             GET_CHAR [continuePrompt] ; Catch '\n' character
             GET_CHAR [continuePrompt] ; Catch [Enter] character
             GET_CHAR [continuePrompt]
-            PRINT_CHAR [continuePrompt]
+            ; PRINT_CHAR [continuePrompt] ; Display in SASM
             NEWLINE
         
             CMP byte [continuePrompt], 'Y'
