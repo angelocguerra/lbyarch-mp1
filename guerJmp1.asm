@@ -6,6 +6,8 @@
 section .data
 inputNum dq 0
 continuePrompt db 0
+digit db 0
+dump db 0
 digitCount db 0
 rotatedNum dq 0
 sumMthPowerDigit dq 0
@@ -18,12 +20,25 @@ main:
     PROGRAM_LOOP:
         ; Input
         PRINT_STRING "Input Number: "
+        MOV dword [inputNum], 0 ; Reset
         GET_DEC 8, [inputNum]
         ; PRINT_DEC 8, [inputNum] ; Display in SASM
-        NEWLINE
+        GET_CHAR dump ; Catch \n entered
         
         ; Input Validation
-        CALL INPUT_VALIDATION
+        ;CALL INPUT_VALIDATION
+        CHECK_DIGIT:
+            GET_CHAR [digit]
+            CMP byte [digit], 10 ; If digit is \n
+            JNE CHECK_DIGIT ; Continue iterating over next
+        
+        MOV RAX, [inputNum]
+        TEST RAX, RAX ; Test using flags
+        JZ INVALID_INPUT ; Validation 1: Non-numerical
+        JS NEGATIVE_INPUT ; Validation 2: Non-negative
+        
+        ; If input is valid, return and continue program loop
+        ;ret
         
         ; A.) m-th power of each digits
         
@@ -79,23 +94,16 @@ main:
             
             PRINT_STRING "Invalid Input. Try again"
             NEWLINE
-            JMP CONTINUE_PROMPT
-    
-    END_PROGRAM_LOOP:
-        ret ; End program
-        
-    INPUT_VALIDATION:
-        ; If input is valid, return and continue program loop
-        ret
-        
-        ; Else, proceed to continue prompt
-        ; JMP CONTINUE_PROMPT
-        
-        ; Validation 1: Non-alpabet
-        
-        ; Validation 2: Non-negative
-        
-        
+            JMP CONTINUE_PROMPT     
+            
+    INVALID_INPUT:
+        PRINT_STRING "Error: Invalid Input"
+        JMP CONTINUE_PROMPT
+            
+    NEGATIVE_INPUT:
+        PRINT_STRING "Error: Negative Number Input"
+        JMP CONTINUE_PROMPT   
+                
     COUNT_DIGIT:
         MOV byte [digitCount], 0 ; reset counter
         MOV RAX, 0 ; reset reg
@@ -205,6 +213,9 @@ main:
     
         END_MTH_POWER_DIGIT:
             ret
+            
+    END_PROGRAM_LOOP:
+        NOP ; End program
        
     xor rax, rax
     ret
