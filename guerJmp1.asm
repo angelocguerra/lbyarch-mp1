@@ -81,7 +81,6 @@ main:
         CONTINUE_PROMPT:
             NEWLINE
             PRINT_STRING "Do you want to continue (Y/N)? "
-            GET_CHAR [continuePrompt] ; Catch '\n' character
             GET_CHAR [continuePrompt]
             ; PRINT_CHAR [continuePrompt] ; Display in SASM
             NEWLINE
