@@ -22,8 +22,6 @@ main:
         PRINT_STRING "Input Number: "
         MOV dword [inputNum], 0 ; Reset
         GET_DEC 8, [inputNum]
-        ; PRINT_DEC 8, [inputNum] ; Display in SASM
-        GET_CHAR dump ; Catch \n entered
         
         ; Input Validation
         ;CALL INPUT_VALIDATION
@@ -82,7 +80,6 @@ main:
             NEWLINE
             PRINT_STRING "Do you want to continue (Y/N)? "
             GET_CHAR [continuePrompt]
-            ; PRINT_CHAR [continuePrompt] ; Display in SASM
             NEWLINE
         
             CMP byte [continuePrompt], 'Y'
